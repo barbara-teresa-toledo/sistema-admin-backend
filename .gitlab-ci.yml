@@ -1,0 +1,40 @@
+stages:
+#  - test
+  - deploy
+
+.config:
+  image: php:8.3
+  services:
+    - mysql:5.7
+  before_script:
+    # Instalar dependências
+    - apt-get update
+    - apt-get install -y curl
+    - curl -sL https://deb.nodesource.com/setup_18.x | bash -
+    - apt-get install -y nodejs
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - apt-get install -y git
+    - npm install
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress
+    - cp .env.example .env
+    - php artisan key:generate
+    - php artisan config:cache
+    - php artisan migrate:refresh --seed
+    - php artisan db:seed
+
+#test:
+#  stage: test
+#  extends: .config
+#  script:
+#    - php vendor/bin/pest --coverage-text --colors=never
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qq
+    - apt-get install -y -qq git
+    - apt-get install -y ruby
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+  only:
+    - main
