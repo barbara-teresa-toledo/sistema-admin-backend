@@ -107,10 +107,10 @@ class FinancialController extends Controller
      */
     public function store(CreateFinancialRequest $request)
     {
-        $serviceOrder = $this->financialRepository->create($request->all());
+        $financialOperation = $this->financialRepository->create($request->all());
 
         return response()->json([
-            'service_order' => $serviceOrder
+            'operation' => $financialOperation
         ], Response::HTTP_CREATED);
     }
 
