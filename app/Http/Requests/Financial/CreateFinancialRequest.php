@@ -28,7 +28,7 @@ class CreateFinancialRequest extends FormRequest
             'date' => 'date|required',
             'description' => 'string|required',
             'value' => 'integer|required',
-            'type' => 'boolean|required'
+            'type' => 'required'
         ];
     }
 
