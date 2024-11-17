@@ -214,7 +214,15 @@ class ClientController extends Controller
      *         description="Client found",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="clients", type="array"),
+     *             @OA\Property(property="clients", type="array",
+     *                  @OA\Items(
+     *                       @OA\Property(property="name", type="string"),
+     *                       @OA\Property(property="document", type="string"),
+     *                       @OA\Property(property="address_id", type="string"),
+     *                       @OA\Property(property="phone", type="string"),
+     *                       @OA\Property(property="email", type="string"),
+     *                   )
+     *              ),
      *         ),
      *     ),
      *     @OA\Response(
@@ -256,7 +264,15 @@ class ClientController extends Controller
      *         description="Clients found",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="clients", type="array"),
+     *             @OA\Property(property="clients", type="array",
+     *                  @OA\Items(
+     *                        @OA\Property(property="name", type="string"),
+     *                        @OA\Property(property="document", type="string"),
+     *                        @OA\Property(property="address_id", type="string"),
+     *                        @OA\Property(property="phone", type="string"),
+     *                        @OA\Property(property="email", type="string"),
+     *                    )
+     *              ),
      *         ),
      *     ),
      *     @OA\Response(

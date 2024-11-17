@@ -5,13 +5,13 @@ namespace App\Http\Controllers\ServiceOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceOrder\CreateServiceOrderRequest;
 use App\Models\ServiceOrder;
-use App\Repositories\ServiceOrder\ServiceOrderRepository;
+use App\Repositories\ServiceOrder\FinancialRepository;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ServiceOrderController extends Controller
 {
-    public function __construct(private readonly ServiceOrderRepository $serviceOrderRepository)
+    public function __construct(private readonly FinancialRepository $serviceOrderRepository)
     {
     }
 
